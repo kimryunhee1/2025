@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit as st
 
 # --- 페이지 기본 설정 ---
 st.set_page_config(page_title="MBTI 직업 추천", page_icon="🎯", layout="centered")
@@ -21,5 +22,21 @@ mbti_jobs = {
     "ISFJ": ["간호사", "교사", "사회복지사", "행정직"],
     "ESTJ": ["경영자", "프로젝트 매니저", "군 장교", "공장 관리자"],
     "ESFJ": ["간호사", "이벤트 플래너", "홍보 담당자", "영업 관리자"],
-    "ISTP": ["엔지니어", "항공 정]()
+    "ISTP": ["엔지니어", "항공 정비사", "프로그래머", "스포츠 코치"],
+    "ISFP": ["패션 디자이너", "사진작가", "예술가", "치유사"],
+    "ESTP": ["세일즈 전문가", "스포츠 선수", "창업가", "경찰"],
+    "ESFP": ["배우", "MC", "광고 모델", "공연 기획자"]
+}
 
+# --- 사용자 입력 ---
+selected_mbti = st.selectbox("당신의 MBTI를 선택하세요 👇", list(mbti_jobs.keys()))
+
+# --- 결과 출력 ---
+if selected_mbti:
+    st.markdown(f"<h2 style='color:#4B9BFF;'>📌 {selected_mbti} 추천 직업</h2>", unsafe_allow_html=True)
+    for job in mbti_jobs[selected_mbti]:
+        st.markdown(f"- 🌟 {job}")
+
+# --- 푸터 ---
+st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; color:gray;'>© 2025 MBTI Career Guide</p>", unsafe_allow_html=True)
