@@ -2,14 +2,18 @@ import streamlit as st
 
 st.markdown("""
     <style>
+    * {font-family: "Comic Sans MS", cursive; }
     .stApp {background-color: lightblue;}
     </style>
     """, unsafe_allow_html=True)
 
 st.title("증상별 처방/팁 안내 앱")
 
-symptoms = ["두통", "복통", "기침", "발열", "근육통", "콧물", "목통증"]
+symptoms = ["현재 느끼는 증상을 선택하세요", "두통", "복통", "기침", "발열", "근육통", "콧물", "목통증"]
 selected = st.selectbox("현재 느끼는 증상을 선택하세요 🩺", symptoms)
+
+if selected == "현재 느끼는 증상을 선택하세요":
+    st.stop()
 
 if selected == "두통":
     st.write("🧠 두통")
