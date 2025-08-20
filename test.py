@@ -2,7 +2,7 @@ import streamlit as st
 
 st.markdown("""
     <style>
-    body {background-color: lightblue;}
+    .stApp {background-color: lightblue;}
     </style>
     """, unsafe_allow_html=True)
 
@@ -48,4 +48,3 @@ elif selected == "목통증":
     st.write("증상 완화 방법: 따뜻한 차 마시기, 휴식")
     st.write("효과가 있는 약: 해열제")
     st.write("증상 완화 방법: 미지근한 물로 몸 닦기, 충분한 수분 섭취")
-
