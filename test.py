@@ -1,16 +1,16 @@
 import streamlit as st
 
 # 페이지 설정
-st.set_page_config(page_title="증상별 약 & 생활 실천 가이드", page_icon="💊", layout="centered")
+st.set_page_config(page_title="증상별 약 & 생활 관리 가이드", page_icon="💊", layout="centered")
 
-# 배경색 하늘색
+# 전체 배경 흰색, 카드 하늘색
 page_bg = """
 <style>
 .stApp {
-    background-color: #B3E5FC;
+    background-color: #ffffff;
 }
 .card {
-    background-color: #ffffff;
+    background-color: #B3E5FC;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 15px;
@@ -61,7 +61,7 @@ selected_symptom = st.selectbox(
     ["증상을 선택하세요."] + list(symptom_data.keys())
 )
 
-# 카드형 UI 출력
+# 카드형 UI 출력 (하늘색 박스)
 if selected_symptom != "증상을 선택하세요.":
     data = symptom_data[selected_symptom]
     
