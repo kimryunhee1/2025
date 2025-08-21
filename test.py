@@ -1,7 +1,7 @@
 import streamlit as st
 
 # 페이지 설정
-st.set_page_config(page_title="증상별 약 & 생활 관리 가이드", page_icon="💊", layout="centered")
+st.set_page_config(page_title="증상별 약 & 생활 실천 가이드", page_icon="💊", layout="centered")
 
 # 배경색 하늘색
 page_bg = """
@@ -9,11 +9,20 @@ page_bg = """
 .stApp {
     background-color: #B3E5FC;
 }
+.card {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+.card h3 {
+    margin-top: 0;
+}
 </style>
 """
 st.markdown(page_bg, unsafe_allow_html=True)
 
-# 앱 제목
 st.title("💊 증상별 약 & 생활 실천 가이드")
 st.write("몸이 안 좋을 때 증상에 맞는 약과 생활 실천 방안을 안내합니다.")
 
@@ -44,31 +53,6 @@ symptom_data = {
         "제품": ["부루펜정", "나프록센정"],
         "생활": ["온찜질", "가벼운 스트레칭", "무리한 운동 피하기", "충분한 휴식"]
     },
-    "생리통 🩸": {
-        "성분": ["이부프로펜", "아세트아미노펜"],
-        "제품": ["이브A정", "타이레놀정"],
-        "생활": ["온찜질", "가벼운 유산소 운동", "카페인·염분 줄이기", "충분한 휴식"]
-    },
-    "복통 🤕": {
-        "성분": ["부스코판", "스멕타"],
-        "제품": ["부스코판정", "스멕타정"],
-        "생활": ["자극적인 음식 피하기", "따뜻한 찜질", "수분 충분히 섭취", "규칙적인 식사"]
-    },
-    "불면증 😴": {
-        "성분": ["멜라토닌 보조제"],
-        "제품": ["멜라토닌 3mg"],
-        "생활": ["취침 전 스마트폰 사용 자제", "일정한 수면 패턴 유지", "카페인 피하기", "가벼운 스트레칭"]
-    },
-    "피로 😵": {
-        "성분": ["비타민C", "종합비타민"],
-        "제품": ["비타민C 500mg", "센트룸 종합비타민"],
-        "생활": ["충분한 수면", "균형 잡힌 식사", "가벼운 운동", "스트레스 관리"]
-    },
-    "코막힘 🤧": {
-        "성분": ["항히스타민제", "비강분무제"],
-        "제품": ["나시브스프레이", "오트리빈"],
-        "생활": ["따뜻한 증기 흡입", "코 세척", "가습기 사용", "실내 공기 건조하지 않게 유지"]
-    }
 }
 
 # 증상 선택
@@ -77,19 +61,26 @@ selected_symptom = st.selectbox(
     ["증상을 선택하세요."] + list(symptom_data.keys())
 )
 
-# 결과 출력
+# 카드형 UI 출력
 if selected_symptom != "증상을 선택하세요.":
     data = symptom_data[selected_symptom]
-    st.subheader(f"{selected_symptom}")
     
-    st.write("💊 **추천 성분:**")
-    for s in data["성분"]:
-        st.write(f"- {s}")
-        
-    st.write("🏷️ **추천 제품:**")
-    for p in data["제품"]:
-        st.write(f"- {p}")
+    st.markdown(f"""
+    <div class="card">
+        <h3>{selected_symptom}</h3>
+        <b>💊 추천 성분:</b>
+        <ul>
+            {''.join(f'<li>{s}</li>' for s in data['성분'])}
+        </ul>
+        <b>🏷️ 추천 제품:</b>
+        <ul>
+            {''.join(f'<li>{p}</li>' for p in data['제품'])}
+        </ul>
+        <b>🏡 생활 실천 방안:</b>
+        <ul>
+            {''.join(f'<li>{tip}</li>' for tip in data['생활'])}
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
     
-    st.write("🏡 **생활 실천 방안:**")
-    for tip in data["생활"]:
-        st.write(f"- {tip}")
+    st.info("⚠️ 주의: 이 앱은 교육용입니다. 실제 복용 전 반드시 약사/의사와 상담하세요.")
