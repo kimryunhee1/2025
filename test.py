@@ -1,4 +1,4 @@
-#streamlit 라이브러리 불러오
+#streamlit 라이브러리 불러오기
 import streamlit as st
 
 # 페이지 설정
@@ -24,7 +24,7 @@ page_bg = """
 """
 st.markdown(page_bg, unsafe_allow_html=True)
 
-#앱 제목 및 앱에 대한 간단한 설
+#앱 제목 및 앱에 대한 간단한 설명
 st.title("💊 증상별 약 & 생활 실천 가이드")
 st.write("몸이 안 좋을 때 증상에 맞는 약과 생활 실천 방안을 안내합니다.")
 
