@@ -82,5 +82,3 @@ if selected_symptom != "증상을 선택하세요.":
         </ul>
     </div>
     """, unsafe_allow_html=True)
-    
-    st.info("⚠️ 주의: 이 앱은 교육용입니다. 실제 복용 전 반드시 약사/의사와 상담하세요.")
